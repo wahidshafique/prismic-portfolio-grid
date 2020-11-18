@@ -1,27 +1,18 @@
 {
-  "name": "nextjs-blog",
+  "name": "prismic-portfolio-grid",
   "version": "1.0.0",
-  "description": "Sample blog built with Next.js using Prismic headless CMS",
   "private": true,
-  "author": {
-    "name": "Raul Gonzalez",
-    "email": "raul.gonzalez@prismic.io"
-  },
   "dependencies": {
-    "next": "^9.1.4",
+    "next": "^10.0.2",
     "prismic-javascript": "3.0.1",
     "prismic-reactjs": "^1.1.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/prismicio/nextjs-blog.git"
   },
   "license": "Apache-2.0"
 }
