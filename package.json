@@ -1,18 +1,24 @@
 {
   "name": "prismic-portfolio-grid",
-  "version": "1.0.0",
   "private": true,
+  "version": "0.1.0",
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
   "dependencies": {
-    "next": "^10.0.2",
-    "prismic-javascript": "3.0.1",
-    "prismic-reactjs": "^1.1.2",
+    "gatsby": "^2.26.1",
+    "gatsby-source-prismic": "^3.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "license": "Apache-2.0"
+  "devDependencies": {
+    "prettier": "2.1.2"
+  }
 }
