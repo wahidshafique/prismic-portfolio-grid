@@ -5,7 +5,7 @@
  exports.createPages = async ({ graphql, actions }) => {
     const { createPage } = actions
   
-    const postTemplate = require.resolve("./src/schemas/project.js")
+    const projectTemplate = require.resolve("./src/templates/project.js")
   
     const result = await graphql(`
       {
@@ -20,15 +20,15 @@
       }
     `)
   
-    const postsList = result.data.allPrismicBlogPost.edges
+    const postsList = result.data.allPrismicProject.edges
   
-    // TODO: Cy: If you dont choose a category in blog post it breaks
+    // TODO: Cy: If you dont choose a category in post it breaks
   
     postsList.forEach(edge => {
-      const url = `/blog/${edge.node.uid}`
+      const url = `/project/${edge.node.uid}`
       createPage({
         path: url,
-        component: postTemplate,
+        component: projectTemplate,
         context: {
           uid: edge.node.uid,
         },
