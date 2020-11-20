@@ -1,5 +1,7 @@
-import React from "react"
+import React from "react";
+import { withPreview } from "gatsby-source-prismic";
 
-export default function Home() {
-  return <div>Hello world!</div>
+function Home({ data }) {
+  return <div>Hello world!</div>;
 }
+export default withPreview(Home);
