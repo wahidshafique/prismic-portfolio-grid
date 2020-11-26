@@ -3,7 +3,7 @@ export default {
     text: "#333",
     background: "#fff",
     primary: "#639",
-    secondary: "#f1f",
+    secondary: "#aaa",
   },
   fonts: {
     body: "system-ui, sans-serif",

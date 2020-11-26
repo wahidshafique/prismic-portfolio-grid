@@ -1,17 +1,17 @@
 import React from "react";
 import { withPreview } from "gatsby-source-prismic";
 import { graphql } from "gatsby";
-import { Heading, Flex, Box } from "theme-ui";
+import { Box } from "theme-ui";
 import Nav from "../components/Nav";
 import SiteHeader from "../modules/SiteHeader";
 import ProjectList from "../modules/ProjectList";
 
 function Home() {
   return (
-    <div>
+    <Box p={[2, 4, 4]}>
       <SiteHeader />
       <ProjectList />
-    </div>
+    </Box>
   );
 }
 

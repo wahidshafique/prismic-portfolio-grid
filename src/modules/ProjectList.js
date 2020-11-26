@@ -25,7 +25,6 @@ const Item = ({ img }) => (
   <Box
     as="li"
     sx={{
-      height: "40vh",
       flexGrow: 1,
     }}
   >
@@ -33,7 +32,7 @@ const Item = ({ img }) => (
       as="img"
       sx={{
         maxHeight: "100%",
-        minWidth: "100%",
+        width: "100%",
         objectFit: "cover",
         verticalAlign: "bottom",
       }}
@@ -59,10 +58,9 @@ export default function ProjectList() {
                 raw
               }
               cover {
-                alt
-                copyright
-                url
-                thumbnails
+                fluid(maxWidth: 500, maxHeight: 500) {
+                  ...GatsbyPrismicImageFluid
+                }
               }
             }
             tags
@@ -75,8 +73,8 @@ export default function ProjectList() {
   console.log(edges);
   return (
     <Wrapper>
-      {edges.map(({ node }) => (
-        <Item img={node.data.cover.url} />
+      {[...edges, ...edges].map(({ node }) => (
+        <Item key={node.id} img={node.data.cover.fluid.src} />
       ))}
     </Wrapper>
   );
