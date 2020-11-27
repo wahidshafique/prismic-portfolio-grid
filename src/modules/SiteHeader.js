@@ -1,8 +1,8 @@
 import React from "react";
-import { Heading, Flex, Box } from "theme-ui";
-import { useStaticQuery, graphql } from "gatsby";
+import { Heading, Flex, Box, Close } from "theme-ui";
+import { useStaticQuery, graphql, navigate } from "gatsby";
 
-export default function SiteHeader() {
+export default function SiteHeader({ showClose }) {
   const {
     prismicHome: { data },
   } = useStaticQuery(graphql`
@@ -22,7 +22,23 @@ export default function SiteHeader() {
   `);
   return (
     <Flex sx={{ flexDirection: "column", mb: 6 }}>
-      <Heading sx={{ fontSize: 6 }}>{data.title.text}</Heading>
+      <Flex sx={{ placeContent: "space-between" }}>
+        <Heading sx={{ fontSize: 6 }}>{data.title.text}</Heading>
+        {showClose && (
+          <Close
+            onClick={() => {
+              navigate("/");
+            }}
+            sx={{
+              cursor: "pointer",
+              placeSelf: "center",
+              svg: {
+                transform: "scale(1.5)",
+              },
+            }}
+          />
+        )}
+      </Flex>
       <Heading sx={{ color: "secondary", fontSize: 4 }} as="h3">
         {data.subtitle.text}
       </Heading>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Heading, Flex, Box } from "theme-ui";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, navigate } from "gatsby";
+import FadeIn from "../components/FadeIn";
 
 const Wrapper = ({ children }) => (
   <Flex
@@ -21,25 +22,29 @@ const Wrapper = ({ children }) => (
   </Flex>
 );
 
-const Item = ({ img }) => (
-  <Box
-    as="li"
-    sx={{
-      flexGrow: 1,
-    }}
-  >
+const Item = ({ img, onClick }) => (
+  <FadeIn>
     <Box
-      as="img"
+      onClick={onClick}
+      as="li"
       sx={{
-        maxHeight: "100%",
-        width: "100%",
-        objectFit: "cover",
-        verticalAlign: "bottom",
+        cursor: "pointer",
+        flexGrow: 1,
       }}
-      src={img}
-      loading="lazy"
-    />
-  </Box>
+    >
+      <Box
+        as="img"
+        sx={{
+          maxHeight: "100%",
+          width: "100%",
+          objectFit: "cover",
+          verticalAlign: "bottom",
+        }}
+        src={img}
+        loading="lazy"
+      />
+    </Box>
+  </FadeIn>
 );
 
 export default function ProjectList() {
@@ -51,6 +56,7 @@ export default function ProjectList() {
         edges {
           node {
             id
+            uid
             data {
               text {
                 html
@@ -73,8 +79,14 @@ export default function ProjectList() {
   console.log(edges);
   return (
     <Wrapper>
-      {[...edges, ...edges].map(({ node }) => (
-        <Item key={node.id} img={node.data.cover.fluid.src} />
+      {edges.map(({ node }) => (
+        <Item
+          key={node.id}
+          img={node.data.cover.fluid.src}
+          onClick={() => {
+            navigate(`${process.env.GATSBY_PROJECT_BASE_URL}/${node.uid}`);
+          }}
+        />
       ))}
     </Wrapper>
   );

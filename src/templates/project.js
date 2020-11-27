@@ -1,18 +1,31 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { withPreview } from "gatsby-source-prismic";
+import SiteHeader from "../modules/SiteHeader";
+import FadeIn from "../components/FadeIn";
+import { Box } from "theme-ui";
 
 const Project = ({ data }) => {
   if (!data) return null;
   const project = data.prismicProject.data;
   return (
-    <div>
-      <div>
-        <a href="/">go back</a>
-        <h3>{project.title.text}</h3>
-      </div>
-      <div dangerouslySetInnerHTML={{ __html: project.text.html }} />
-    </div>
+    <Box p={[2, 4, 4]}>
+      <SiteHeader showClose />
+      <FadeIn>
+        <Box
+          as="img"
+          sx={{
+            maxHeight: "100%",
+            width: "100%",
+            objectFit: "cover",
+            verticalAlign: "bottom",
+          }}
+          src={project.cover.fluid.src}
+          loading="lazy"
+        />
+      </FadeIn>
+      {/* <div dangerouslySetInnerHTML={{ __html: project.text.html }} /> */}
+    </Box>
   );
 };
 
@@ -29,6 +42,11 @@ export const pageQuery = graphql`
         text {
           text
           html
+        }
+        cover {
+          fluid {
+            ...GatsbyPrismicImageFluid
+          }
         }
       }
     }
