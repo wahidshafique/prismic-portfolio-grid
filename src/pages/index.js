@@ -1,8 +1,6 @@
 import React from "react";
 import { withPreview } from "gatsby-source-prismic";
-import { graphql } from "gatsby";
 import { Box } from "theme-ui";
-import Nav from "../components/Nav";
 import SiteHeader from "../modules/SiteHeader";
 import ProjectList from "../modules/ProjectList";
 

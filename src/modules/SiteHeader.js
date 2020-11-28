@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Flex, Box, Close } from "theme-ui";
+import { Heading, Flex, Close } from "theme-ui";
 import { useStaticQuery, graphql, navigate } from "gatsby";
 
 export default function SiteHeader({ showClose }) {
