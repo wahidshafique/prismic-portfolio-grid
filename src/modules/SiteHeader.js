@@ -1,6 +1,7 @@
 import React from "react";
 import { Heading, Flex, Close } from "theme-ui";
 import { useStaticQuery, graphql, navigate } from "gatsby";
+import Boop from "../components/Boop";
 
 export default function SiteHeader({ showClose }) {
   const {
@@ -25,18 +26,20 @@ export default function SiteHeader({ showClose }) {
       <Flex sx={{ placeContent: "space-between" }}>
         <Heading sx={{ fontSize: 6 }}>{data.title.text}</Heading>
         {showClose && (
-          <Close
-            onClick={() => {
-              navigate("/");
-            }}
-            sx={{
-              cursor: "pointer",
-              placeSelf: "center",
-              svg: {
-                transform: "scale(1.5)",
-              },
-            }}
-          />
+          <Boop rotation={10} timing={200}>
+            <Close
+              onClick={() => {
+                navigate("/");
+              }}
+              sx={{
+                cursor: "pointer",
+                placeSelf: "center",
+                svg: {
+                  transform: "scale(1.5)",
+                },
+              }}
+            />
+          </Boop>
         )}
       </Flex>
       <Heading sx={{ color: "secondary", fontSize: 4 }} as="h3">

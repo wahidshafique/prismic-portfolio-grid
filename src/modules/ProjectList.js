@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Flex, Box } from "theme-ui";
+import { Flex, Box } from "theme-ui";
 import { useStaticQuery, graphql, navigate } from "gatsby";
 import FadeIn from "../components/FadeIn";
 
