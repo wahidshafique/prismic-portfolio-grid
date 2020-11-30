@@ -1,16 +1,19 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { withPreview } from "gatsby-source-prismic";
-import SiteHeader from "../modules/SiteHeader";
+import SiteWrapper from "../modules/SiteWrapper";
 import FadeIn from "../components/FadeIn";
-import { Box, Flex } from "theme-ui";
+import { Flex } from "theme-ui";
 
-const Project = ({ data }) => {
+const Project = ({ location, data }) => {
+  console.log(1211, location);
   if (!data) return null;
   const project = data.prismicProject.data;
   return (
-    <Box p={[2, 4, 4]}>
-      <SiteHeader showClose />
+    <SiteWrapper
+      showClose
+      closePageLink={location?.state?.fromTag && `/${location.state.fromTag}`}
+    >
       <Flex sx={{ placeContent: "center" }}>
         <FadeIn>
           <Flex
@@ -26,7 +29,7 @@ const Project = ({ data }) => {
         </FadeIn>
       </Flex>
       {/* <div dangerouslySetInnerHTML={{ __html: project.text.html }} /> */}
-    </Box>
+    </SiteWrapper>
   );
 };
 

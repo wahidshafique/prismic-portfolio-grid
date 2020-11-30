@@ -2,6 +2,7 @@ import React from "react";
 import { withPreview } from "gatsby-source-prismic";
 import SiteWrapper from "../modules/SiteWrapper";
 import ProjectList from "../modules/ProjectList";
+import { graphql } from "gatsby";
 
 function Home({ data }) {
   return (
@@ -14,8 +15,8 @@ function Home({ data }) {
 export default withPreview(Home);
 
 export const pageQuery = graphql`
-  query Projects {
-    allPrismicProject {
+  query PersonalProjects {
+    allPrismicProject(filter: { tags: { eq: "personal" } }) {
       edges {
         node {
           id

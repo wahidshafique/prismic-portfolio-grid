@@ -14,6 +14,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             id
             uid
+            tags
           }
         }
       }
@@ -23,7 +24,10 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsList = result.data.allPrismicProject.edges;
 
   postsList.forEach((edge) => {
-    const url = `${process.env.GATSBY_PROJECT_BASE_URL}/${edge.node.uid}`;
+    const url = `/${edge.node.tags[0] || process.env.GATSBY_PROJECT_BASE_URL}/${
+      edge.node.uid
+    }`;
+    console.log(url);
     createPage({
       path: url,
       component: projectTemplate,

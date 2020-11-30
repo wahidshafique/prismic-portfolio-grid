@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Flex, Box } from "theme-ui";
+import { Box } from "theme-ui";
 import { keyframes } from "@emotion/react";
 
 const fadeIn = keyframes({
