@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { NavLink, Box, Heading } from "theme-ui";
 import { Link } from "gatsby";
+import { globalHistory } from "@reach/router";
 
 const HeadingLink = ({ to, children }) => (
   <NavLink
@@ -9,11 +10,15 @@ const HeadingLink = ({ to, children }) => (
     sx={{
       p: [1, 1, 3],
     }}
+    activeStyle={{ color: "red" }}
+    getProps={(e) => console.log(e)}
   >
     <Heading
       as="h3"
       sx={{
-        color: window.location.pathname.includes(to) ? "text" : "secondary",
+        color: globalHistory.location.pathname.includes(to)
+          ? "text"
+          : "secondary",
         "&:hover": { color: "text" },
       }}
     >

@@ -5,8 +5,12 @@ export default {
     primary: "#639",
     secondary: "#aaa",
   },
+  text: {
+    default: {
+      fontFamily: "quicksand",
+    },
+  },
   fonts: {
-    body: "system-ui, sans-serif",
     heading: "quicksand, sans-serif",
     monospace: "Menlo, monospace",
   },

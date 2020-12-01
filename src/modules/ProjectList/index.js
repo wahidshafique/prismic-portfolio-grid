@@ -2,6 +2,7 @@ import React from "react";
 import { Flex } from "theme-ui";
 import FadeIn from "../../components/FadeIn";
 import { navigate } from "gatsby";
+import { globalHistory } from "@reach/router";
 
 const Wrapper = ({ children }) => (
   <Flex
