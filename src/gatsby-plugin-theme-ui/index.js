@@ -7,7 +7,7 @@ export default {
   },
   fonts: {
     body: "system-ui, sans-serif",
-    heading: "limelight, sans-serif",
+    heading: "quicksand, sans-serif",
     monospace: "Menlo, monospace",
   },
   fontWeights: {

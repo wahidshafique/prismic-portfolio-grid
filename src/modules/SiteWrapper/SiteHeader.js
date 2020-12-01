@@ -6,7 +6,6 @@ import SiteNav from "./SiteNav";
 import { Link } from "gatsby";
 
 export default function SiteHeader({ showClose, closePageLink = "/" }) {
-  console.log(111, closePageLink);
   const {
     prismicHome: { data },
   } = useStaticQuery(graphql`
@@ -25,13 +24,15 @@ export default function SiteHeader({ showClose, closePageLink = "/" }) {
     }
   `);
   return (
-    <Flex sx={{ flexDirection: "column", mb: 6 }}>
+    <Flex sx={{ flexDirection: "column", mb: 5 }}>
       <Flex sx={{ alignItems: "center" }}>
         <Heading
           as={Link}
           to="/"
           sx={{
-            fontSize: 6,
+            flex: ["0.5", "none", "none"],
+            fontWeight: "bold",
+            fontSize: [5, 5, 6],
             textDecoration: "none",
             color: "text",
             "&:visited": { color: "text" },
@@ -39,9 +40,15 @@ export default function SiteHeader({ showClose, closePageLink = "/" }) {
         >
           {data.title.text}
         </Heading>
-        <SiteNav ml={3} />
+        <SiteNav ml={["auto", 3, 3]} />
         {showClose && (
-          <Flex sx={{ ml: "auto" }}>
+          <Flex
+            sx={{
+              position: "fixed",
+              right: [0, 3, 4],
+              top: [2, "inherit", "inherit"],
+            }}
+          >
             <Boop rotation={10} timing={200}>
               <Close
                 onClick={() => {
@@ -50,8 +57,9 @@ export default function SiteHeader({ showClose, closePageLink = "/" }) {
                 sx={{
                   cursor: "pointer",
                   placeSelf: "center",
+                  minWidth: "50px",
                   svg: {
-                    transform: "scale(2)",
+                    transform: ["scale(1.5)", "scale(2)", "scale(2)"],
                   },
                 }}
               />

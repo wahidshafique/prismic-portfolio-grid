@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink, Flex, Heading } from "theme-ui";
+import React, { Fragment } from "react";
+import { NavLink, Box, Heading } from "theme-ui";
 import { Link } from "gatsby";
 
 const HeadingLink = ({ to, children }) => (
@@ -7,7 +7,7 @@ const HeadingLink = ({ to, children }) => (
     as={Link}
     to={to}
     sx={{
-      p: 2,
+      p: [1, 1, 3],
     }}
   >
     <Heading
@@ -22,13 +22,27 @@ const HeadingLink = ({ to, children }) => (
   </NavLink>
 );
 
+const HeadingGroup = ({ sx, ...attrs }) => (
+  <Box as="nav" sx={sx} {...attrs}>
+    <HeadingLink to="/personal">Personal</HeadingLink>
+    <HeadingLink to="/professional">Professional</HeadingLink>
+    {/* TODO */}
+    <HeadingLink to="/about">About</HeadingLink>
+  </Box>
+);
+
 function Nav({ ...attrs }) {
   return (
-    <Flex as="nav" {...attrs}>
-      <HeadingLink to="/personal">Personal</HeadingLink>
-      <HeadingLink to="/professional">Professional</HeadingLink>
-      <HeadingLink to="/contact">Contact</HeadingLink>
-    </Flex>
+    <Fragment>
+      <HeadingGroup sx={{ display: ["none", "flex", "flex"] }} {...attrs} />
+      <HeadingGroup
+        sx={{
+          display: ["flex", "none", "none"],
+          flexDirection: "column",
+        }}
+        {...attrs}
+      />
+    </Fragment>
   );
 }
 
