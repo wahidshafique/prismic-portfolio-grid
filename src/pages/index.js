@@ -27,6 +27,10 @@ export const pageQuery = graphql`
               raw
             }
             cover {
+              dimensions {
+                height
+                width
+              }
               fluid(maxWidth: 500, maxHeight: 500) {
                 ...GatsbyPrismicImageFluid
               }

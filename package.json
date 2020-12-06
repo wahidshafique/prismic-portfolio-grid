@@ -14,16 +14,17 @@
   },
   "dependencies": {
     "@emotion/react": "^11.1.1",
-    "gatsby": "^2.26.1",
+    "gatsby": "^2.28.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
-    "gatsby-plugin-theme-ui": "^0.3.3",
+    "gatsby-plugin-theme-ui": "^0.3.4",
     "gatsby-source-prismic": "^3.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-photo-gallery": "^8.0.0",
     "react-spring": "^8.0.27",
-    "theme-ui": "^0.4.0-rc.12"
+    "theme-ui": "^0.3.4"
   },
   "devDependencies": {
-    "prettier": "2.1.2"
+    "prettier": "2.2.1"
   }
 }

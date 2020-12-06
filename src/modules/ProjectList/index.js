@@ -1,66 +1,41 @@
 import React from "react";
-import { Flex } from "theme-ui";
+import { Box } from "theme-ui";
 import FadeIn from "../../components/FadeIn";
 import { navigate } from "gatsby";
-import { globalHistory } from "@reach/router";
-
-const Wrapper = ({ children }) => (
-  <Flex
-    as="ul"
+import Gallery from "react-photo-gallery";
+const ImageRenderer = ({ key, photo }) => (
+  <Box
+    width={photo.width}
+    height={photo.height}
+    onClick={photo.onClick}
     sx={{
-      p: 0,
-      m: 0,
-      flexWrap: "wrap",
-      "&:after": {
-        content: "",
-        display: "block",
-        flexGrow: 10,
-      },
+      cursor: "pointer",
+      m: "2px",
     }}
-  >
-    {children}
-  </Flex>
-);
-
-const Item = ({ img, onClick }) => (
-  <FadeIn>
-    <Flex
-      onClick={onClick}
-      as="li"
-      sx={{
-        cursor: "pointer",
-        m: 1,
-      }}
-    >
-      <Flex
-        sx={{
-          maxHeight: "100%",
-          width: "100%",
-          objectFit: "cover",
-          verticalAlign: "bottom",
-        }}
-        as="img"
-        src={img}
-        loading="lazy"
-      />
-    </Flex>
-  </FadeIn>
+    as="img"
+    key={key}
+    src={photo.src}
+    loading="lazy"
+  />
 );
 
 const ProjectList = ({ listOfProjects }) => {
+  const mappedPhotos = listOfProjects.map(({ node }) => {
+    return {
+      key: node.id,
+      src: node.data.cover.fluid.src,
+      width: node.data.cover.dimensions.width,
+      height: node.data.cover.dimensions.height,
+      onClick: () => {
+        const tag = node.tags[0] || process.env.GATSBY_PROJECT_BASE_URL;
+        navigate(`/${tag}/${node.uid}`, { state: { fromTag: tag } });
+      },
+    };
+  });
   return (
-    <Wrapper>
-      {listOfProjects.map(({ node }) => (
-        <Item
-          key={node.id}
-          img={node.data.cover.fluid.src}
-          onClick={() => {
-            const tag = node.tags[0] || process.env.GATSBY_PROJECT_BASE_URL;
-            navigate(`/${tag}/${node.uid}`, { state: { fromTag: tag } });
-          }}
-        />
-      ))}
-    </Wrapper>
+    <FadeIn>
+      <Gallery renderImage={ImageRenderer} photos={mappedPhotos} />
+    </FadeIn>
   );
 };
 
