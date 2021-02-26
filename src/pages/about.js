@@ -32,7 +32,7 @@ const About = ({ data }) => {
           }}
         />
         <Flex sx={{ flex: 1, flexDirection: "column", mt: [4, 0, 0] }}>
-          <Heading mb={3}>{aboutData?.title?.[0]?.text}</Heading>          
+          <Heading mb={1}>{aboutData?.title?.[0]?.text}</Heading>          
           <Text>{aboutData?.bio?.[0]?.text}</Text>
           {aboutData?.social_media.length > 0 && (
             <Flex mt={4}>
