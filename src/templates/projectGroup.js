@@ -22,11 +22,6 @@ export const pageQuery = graphql`
           id
           uid
           data {
-            text {
-              html
-              text
-              raw
-            }
             cover {
               dimensions {
                 height

@@ -27,7 +27,15 @@ const Project = ({ location, data }) => {
           />
         </FadeIn>
       </Flex>
-      {/* <div dangerouslySetInnerHTML={{ __html: project.text.html }} /> */}
+      <Flex
+        sx={{
+          width: "100%",
+          placeContent: "center",
+          fontFamily: "quicksand",
+        }}
+      >
+        <div dangerouslySetInnerHTML={{ __html: project.description.html }} />
+      </Flex>
     </SiteWrapper>
   );
 };
@@ -39,11 +47,7 @@ export const pageQuery = graphql`
     prismicProject(uid: { eq: $uid }) {
       uid
       data {
-        title {
-          text
-        }
-        text {
-          text
+        description {
           html
         }
         cover {

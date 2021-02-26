@@ -67,7 +67,10 @@ export default function SiteHeader({ showClose, closePageLink = "/" }) {
           </Flex>
         )}
       </Flex>
-      <Heading sx={{ color: "secondary", fontSize: 3 }} as="h3">
+      <Heading
+        sx={{ color: "secondary", fontSize: 3, width: ["150px", "100%"] }}
+        as="h3"
+      >
         {data.subtitle.text}
       </Heading>
     </Flex>
