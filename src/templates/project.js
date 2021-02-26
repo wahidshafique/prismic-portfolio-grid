@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import { withPreview } from "gatsby-source-prismic";
 import SiteWrapper from "../modules/SiteWrapper";
 import FadeIn from "../components/FadeIn";
-import { Flex, Heading } from "theme-ui";
+import { Flex, Heading, Card } from "theme-ui";
 
 const Project = ({ location, data }) => {
   if (!data) return null;
@@ -35,8 +35,10 @@ const Project = ({ location, data }) => {
           fontFamily: "quicksand",
         }}
       >
-        <Heading mb={1}>{project.title.text}</Heading>
-        <div dangerouslySetInnerHTML={{ __html: project.description.html }} />
+        <Card mt={3}>
+          <Heading mb={1}>{project.title.text}</Heading>
+          <div dangerouslySetInnerHTML={{ __html: project.description.html }} />
+        </Card>
       </Flex>
     </SiteWrapper>
   );
