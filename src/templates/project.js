@@ -35,10 +35,10 @@ const Project = ({ location, data }) => {
           fontFamily: "quicksand",
         }}
       >
-        <Card mt={3}>
-          <Heading mb={1}>{project.title.text}</Heading>
-          <div dangerouslySetInnerHTML={{ __html: project.description.html }} />
-        </Card>
+        <Heading mt={3} mb={1}>
+          {project.title.text}
+        </Heading>
+        <div dangerouslySetInnerHTML={{ __html: project.description.html }} />
       </Flex>
     </SiteWrapper>
   );
