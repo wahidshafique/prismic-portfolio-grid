@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { NavLink, Box, Heading } from "theme-ui";
-import { Link } from "gatsby";
 import { globalHistory } from "@reach/router";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 const HeadingLink = ({ to, children }) => (
   <NavLink
@@ -27,14 +27,27 @@ const HeadingLink = ({ to, children }) => (
   </NavLink>
 );
 
-const HeadingGroup = ({ sx, ...attrs }) => (
-  <Box as="nav" sx={sx} {...attrs}>
-    <HeadingLink to="/personal">Personal</HeadingLink>
-    <HeadingLink to="/professional">Professional</HeadingLink>
-    {/* TODO */}
-    <HeadingLink to="/about">About</HeadingLink>
-  </Box>
-);
+const HeadingGroup = ({ sx, ...attrs }) => {
+  const {
+    allPrismicProject: { distinct },
+  } = useStaticQuery(graphql`
+    query NavTags {
+      allPrismicProject {
+        distinct(field: tags)
+      }
+    }
+  `);
+  return (
+    <Box as="nav" sx={sx} {...attrs}>
+      {distinct?.map((tag) => (
+        <HeadingLink key={tag} to={`/${tag}`}>
+          {tag}
+        </HeadingLink>
+      ))}
+      <HeadingLink to="/about">about</HeadingLink>
+    </Box>
+  );
+};
 
 function Nav({ ...attrs }) {
   return (

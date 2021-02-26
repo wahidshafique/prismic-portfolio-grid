@@ -6,7 +6,6 @@ import FadeIn from "../components/FadeIn";
 import { Flex } from "theme-ui";
 
 const Project = ({ location, data }) => {
-  console.log(1211, location);
   if (!data) return null;
   const project = data.prismicProject.data;
   return (

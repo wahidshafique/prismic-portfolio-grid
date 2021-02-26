@@ -4,7 +4,7 @@ import SiteWrapper from "../modules/SiteWrapper";
 import ProjectList from "../modules/ProjectList";
 import { graphql } from "gatsby";
 
-function Home({ data }) {
+function ProjectGroup({ data }) {
   return (
     <SiteWrapper>
       <ProjectList listOfProjects={data.allPrismicProject.edges} />
@@ -12,11 +12,11 @@ function Home({ data }) {
   );
 }
 
-export default withPreview(Home);
+export default withPreview(ProjectGroup);
 
 export const pageQuery = graphql`
-  query ProfessionalProjects {
-    allPrismicProject(filter: { tags: { eq: "professional" } }) {
+  query ProjectGroup($tag: String!) {
+    allPrismicProject(filter: { tags: { eq: $tag } }) {
       edges {
         node {
           id
