@@ -21,7 +21,6 @@ const About = ({ data }) => {
           alignItems: ["baseline", "start"],
         }}
       >
-        {console.log(aboutData)}
         <Image
           src={aboutData.profile_image?.url}
           sx={{

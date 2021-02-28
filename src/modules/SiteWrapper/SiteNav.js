@@ -11,7 +11,6 @@ const HeadingLink = ({ to, children }) => (
       p: [1, 1, 3],
     }}
     activeStyle={{ color: "red" }}
-    getProps={(e) => console.log(e)}
   >
     <Heading
       as="h3"
