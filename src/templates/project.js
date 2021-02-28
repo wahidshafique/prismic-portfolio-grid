@@ -51,7 +51,7 @@ const Project = ({ location, data }) => {
         <Flex
           sx={{
             flexDirection: "column",
-            width: "50%",
+            width: ["100%", "50%"],
             margin: "0 auto",
             fontFamily: "quicksand",
           }}
