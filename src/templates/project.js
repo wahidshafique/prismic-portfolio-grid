@@ -3,11 +3,14 @@ import { graphql } from "gatsby";
 import { withPreview } from "gatsby-source-prismic";
 import SiteWrapper from "../modules/SiteWrapper";
 import FadeIn from "../components/FadeIn";
-import { Flex, Heading } from "theme-ui";
+import { Flex, Heading, Box } from "theme-ui";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination } from "swiper";
 
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
+
+SwiperCore.use([Navigation, Pagination]);
 
 const FlexImage = ({ url, ...attrs }) => (
   <Flex
@@ -20,6 +23,9 @@ const FlexImage = ({ url, ...attrs }) => (
       verticalAlign: "bottom",
     }}
     src={url}
+    onClick={() => {
+      window.open(url, "_blank");
+    }}
     loading="lazy"
     {...attrs}
   />
@@ -35,18 +41,27 @@ const Project = ({ location, data }) => {
       closePageLink={location?.state?.fromTag && `/${location.state.fromTag}`}
     >
       <FadeIn>
-        <Swiper slidesPerView={1}>
-          <SwiperSlide>
-            <FlexImage url={project.cover.fluid.src} />
-          </SwiperSlide>
-          {project.other_images
-            .filter((e) => !!e.secondary_image.url)
-            .map(({ secondary_image }) => (
-              <SwiperSlide key={secondary_image.url}>
-                <FlexImage url={secondary_image.url} />
-              </SwiperSlide>
-            ))}
-        </Swiper>
+        <Box
+          sx={{
+            ".swiper-button-prev, .swiper-button-next": {
+              top: 0,
+              height: "100%",
+            },
+          }}
+        >
+          <Swiper navigation pagination slidesPerView={1}>
+            <SwiperSlide>
+              <FlexImage url={project.cover.fluid.src} />
+            </SwiperSlide>
+            {project.other_images
+              .filter((e) => !!e.secondary_image.url)
+              .map(({ secondary_image }) => (
+                <SwiperSlide key={secondary_image.url}>
+                  <FlexImage url={secondary_image.url} />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        </Box>
         <Flex sx={{ placeContent: "center" }}></Flex>
         <Flex
           sx={{
