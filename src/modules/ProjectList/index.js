@@ -18,7 +18,7 @@ const ImageRenderer = ({ key, photo }) => (
   >
     <Box
       sx={{
-        backgroundColor: "rgba(255, 196, 12, 0.5)",
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
         width: "100%",
         height: "100%",
         position: "absolute",
@@ -39,6 +39,7 @@ const ImageRenderer = ({ key, photo }) => (
           top: "50%",
           width: "100%",
           transform: "translateY(-50%)",
+          backgroundColor: "white",
         }}
       >
         {photo.title}
