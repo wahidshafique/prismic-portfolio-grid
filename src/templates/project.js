@@ -34,6 +34,9 @@ const FlexImage = ({ url, ...attrs }) => (
 const Project = ({ location, data }) => {
   if (!data) return null;
   const project = data.prismicProject.data;
+  const extraProjectImages = project.other_images.filter(
+    (e) => !!e.secondary_image.url
+  );
 
   return (
     <SiteWrapper
@@ -46,20 +49,26 @@ const Project = ({ location, data }) => {
             ".swiper-button-prev, .swiper-button-next": {
               top: 0,
               height: "100%",
+              color: "#ffc40c",
+            },
+            ".swiper-pagination-bullet-active": {
+              backgroundColor: "#ffc40c !important",
             },
           }}
         >
-          <Swiper navigation pagination slidesPerView={1}>
+          <Swiper
+            navigation={extraProjectImages.length > 0}
+            pagination={extraProjectImages.length > 0}
+            slidesPerView={1}
+          >
             <SwiperSlide>
               <FlexImage url={project.cover.fluid.src} />
             </SwiperSlide>
-            {project.other_images
-              .filter((e) => !!e.secondary_image.url)
-              .map(({ secondary_image }) => (
-                <SwiperSlide key={secondary_image.url}>
-                  <FlexImage url={secondary_image.url} />
-                </SwiperSlide>
-              ))}
+            {extraProjectImages.map(({ secondary_image }) => (
+              <SwiperSlide key={secondary_image.url}>
+                <FlexImage url={secondary_image.url} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </Box>
         <Flex sx={{ placeContent: "center" }}></Flex>
