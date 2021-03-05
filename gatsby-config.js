@@ -6,6 +6,15 @@ const prismicLinkResolver = require("./src/utils/linkResolver");
 
 module.exports = {
   plugins: [
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
+      },
+    },
     "gatsby-plugin-theme-ui",
     {
       resolve: `gatsby-plugin-google-fonts`,
