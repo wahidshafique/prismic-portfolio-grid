@@ -21,6 +21,9 @@ export const pageQuery = graphql`
           id
           uid
           data {
+            title {
+              text
+            }
             cover {
               dimensions {
                 height
